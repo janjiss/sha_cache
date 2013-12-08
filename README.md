@@ -14,8 +14,9 @@ If you want to avoid heavy data processing for the same responses from 3rd party
 
 ## The solution
 1. You write a sha for each response.
-
-    Scha::Client.write_data("your_unique_key", "{'json': 'data'}")
+```ruby
+SchCache::Client.write_data("your_unique_key", "{'json': 'data'}")
+```
 
 2. Next time you check if sha is the same and if it is skip your processing
 
