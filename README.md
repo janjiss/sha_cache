@@ -43,10 +43,12 @@ end
 
 After that you will need to pass redis instance you are working with:
 
+```ruby
 @redis_obj = Redis.new
 ShaCahce::Adapters::Redis.config do |c|
   c.redis_obj = @redis_obj
 end
+```
 
 
 ## Installation
