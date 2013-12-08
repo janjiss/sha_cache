@@ -1,12 +1,15 @@
 # ShaCache
 
-If you want to avoid heavy data processing for the same responses from 3rd party API? ShaCache allows you to do it by caching sha of responses
+If you want to avoid heavy data processing for the same responses from 3rd party API? ShaCache allows you to do it by caching sha of responses. After that you can skip data processing if data has not changed.
+
+# Note
+
+Still to test this working
 
 ## The problem
 
 1. You send request to server /user/profile.json and get following response:
     {"username": "Janis"}
-
 2. You do some processing based on that data
 3. You make request second time and response stays the same:
     {"username": "Janis"}
@@ -14,17 +17,37 @@ If you want to avoid heavy data processing for the same responses from 3rd party
 
 ## The solution
 1. You write a sha for each response.
+
 ```ruby
 SchCache::Client.write_data("your_unique_key", "{'json': 'data'}")
 ```
 
 2. Next time you check if sha is the same and if it is skip your processing
 
-    if ShaCache::Client.has_data_with_key?("your_unique_key", "{'json': 'data'}")
-      skip_data_processing
-    else
-      do_data_processing
-    end
+```ruby
+if ShaCache::Client.has_data_with_key?("your_unique_key", "{'json': 'data'}")
+  skip_data_processing
+else
+  do_data_processing
+end
+```
+
+# Configuration
+First of all, you will have to configure adapter (support is only available for Redis right now) but you can write your own:
+
+```ruby
+ShaCache::Config.config do |c|
+  c.adapter = ShaCache::Adapter::Redis
+end
+```
+
+After that you will need to pass redis instance you are working with:
+
+@redis_obj = Redis.new
+ShaCahce::Adapters::Redis.config do |c|
+  c.redis_obj = @redis_obj
+end
+
 
 ## Installation
 
@@ -39,10 +62,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install sha_cache
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 
