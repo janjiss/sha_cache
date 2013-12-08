@@ -1,4 +1,3 @@
-require 'digest/sha1'
 module ShaCache
   class Client
     def self.data_was_used?(key, body)
@@ -12,7 +11,7 @@ module ShaCache
     end
 
     def self.convert_to_sha(body)
-      Digest::SHA1.hexidigest(body)  
+      Digest::SHA1.hexdigest(body)  
     end
 
     def self.adapter
