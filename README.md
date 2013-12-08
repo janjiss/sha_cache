@@ -9,10 +9,18 @@ Still to test this working
 ## The problem
 
 1. You send request to server /user/profile.json and get following response:
+
+```json
     {"username": "Janis"}
+```
+
 2. You do some processing based on that data
 3. You make request second time and response stays the same:
+
+```json
     {"username": "Janis"}
+```
+
 4. You do the processing again.
 
 ## The solution
