@@ -30,7 +30,7 @@ Still to test this working
     {"username": "janis"}
 ```
 
-2. You cache sha for response body wit unique key that suits you (It can be user.id or something else)
+2. You cache sha for response body with unique key that suits you (It can be user.id or something else)
 
 ```ruby
 SchCache::Client.write_data(user.id, "{/"username/": /"janis/"}")
