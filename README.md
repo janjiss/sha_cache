@@ -18,22 +18,28 @@ Still to test this working
 3. You make request second time and response stays the same:
 
 ```json
-    {"username": "Janis"}
+    {"username": "janis"}
 ```
 
 4. You do the processing again.
 
 ## The solution
-1. You write a sha for each response.
+1. You send request to server /user/profile.json and get following response:
 
-```ruby
-SchCache::Client.write_data("your_unique_key", "{'json': 'data'}")
+```json
+    {"username": "janis"}
 ```
 
-2. Next time you check if sha is the same and if it is skip your processing
+2. You cache sha for response body wit unique key that suits you (It can be user.id or something else)
 
 ```ruby
-if ShaCache::Client.has_data_with_key?("your_unique_key", "{'json': 'data'}")
+SchCache::Client.write_data(user.id, "{/"username/": /"janis/"}")
+```
+
+3. Next time you check if SHA is the same for that response body and, if it is, skip your processing
+
+```ruby
+if ShaCache::Client.has_data_with_key?(user.id, "{/"username/": /"janis/"}")
   skip_data_processing
 else
   do_data_processing
