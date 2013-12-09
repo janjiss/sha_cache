@@ -11,14 +11,14 @@ Still to test this working
 1. You send request to server /user/profile.json and get following response:
 
 ```json
-    {"username": "Janis"}
+{"username": "Janis"}
 ```
 
 2. You do some processing based on that data
 3. You make request second time and response stays the same:
 
 ```json
-    {"username": "janis"}
+{"username": "janis"}
 ```
 
 4. You do the processing again.
@@ -27,7 +27,7 @@ Still to test this working
 1. You send request to server /user/profile.json and get following response:
 
 ```json
-    {"username": "janis"}
+{"username": "janis"}
 ```
 
 2. You cache sha for response body wit unique key that suits you (It can be user.id or something else)
