@@ -33,13 +33,13 @@ Still to test this working
 * You cache sha for response body with unique key that suits you (It can be user.id or something else)
 
 ```ruby
-SchCache::Client.write_data(user.id, "{/"username/": /"janis/"}")
+SchCache::Client.write_data(user.id, "{\"username\": \"janis\"}")
 ```
 
 * Next time you check if SHA is the same for that response body and, if it is, skip your processing
 
 ```ruby
-if ShaCache::Client.has_data_with_key?(user.id, "{/"username/": /"janis/"}")
+if ShaCache::Client.has_data_with_key?(user.id, "{\"username\": \"janis\"}")
   skip_data_processing
 else
   do_data_processing
