@@ -11,7 +11,7 @@ Still to test this working
 * You send request to server /user/profile.json and get following response:
 
 ```json
-{"username": "Janis"}
+{"username": "janis"}
 ```
 
 * You do some processing based on that data
