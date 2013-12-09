@@ -21,7 +21,7 @@ Still to test this working
 {"username": "janis"}
 ```
 
-4. You do the processing again.
+1. You do the processing again.
 
 ## The solution
 1. You send request to server /user/profile.json and get following response:
