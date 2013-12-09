@@ -8,35 +8,35 @@ Still to test this working
 
 ## The problem
 
-1. You send request to server /user/profile.json and get following response:
+* You send request to server /user/profile.json and get following response:
 
 ```json
 {"username": "Janis"}
 ```
 
-2. You do some processing based on that data
-3. You make request second time and response stays the same:
+* You do some processing based on that data
+* You make request second time and response stays the same:
 
 ```json
 {"username": "janis"}
 ```
 
-1. You do the processing again.
+* You do the processing again.
 
 ## The solution
-1. You send request to server /user/profile.json and get following response:
+* You send request to server /user/profile.json and get following response:
 
 ```json
 {"username": "janis"}
 ```
 
-2. You cache sha for response body with unique key that suits you (It can be user.id or something else)
+* You cache sha for response body with unique key that suits you (It can be user.id or something else)
 
 ```ruby
 SchCache::Client.write_data(user.id, "{/"username/": /"janis/"}")
 ```
 
-3. Next time you check if SHA is the same for that response body and, if it is, skip your processing
+* Next time you check if SHA is the same for that response body and, if it is, skip your processing
 
 ```ruby
 if ShaCache::Client.has_data_with_key?(user.id, "{/"username/": /"janis/"}")
